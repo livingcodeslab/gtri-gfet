@@ -1,4 +1,4 @@
-// Same exact cutaway that works, rotated 90 degrees
+// Cutaway view of corrected thread positions
 
 port_1 = [14, 28, 9];
 port_2 = [14, 28, 19];
@@ -23,8 +23,7 @@ module v_groove_thread(depth) {
     }
 }
 
-// Rotate the entire assembly 90 degrees clockwise (viewed from top)
-rotate([0, 0, -90])
+// Cutaway view - slice at X=14
 difference() {
     difference() {
         import("CAD/gfet_adapter.STL");

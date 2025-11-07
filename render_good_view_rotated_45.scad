@@ -10,12 +10,12 @@ thread_groove_depth = 1.2;
 module v_groove_thread(depth) {
     turns = depth / thread_pitch;
     union() {
-        cylinder(h=depth, d=thread_minor_d, $fn=80);
+        cylinder(h=depth, d=thread_minor_d, $fn=120);
         for (i = [0:turns]) {
             z_pos = i * thread_pitch;
             if (z_pos < depth) {
                 translate([0, 0, z_pos])
-                rotate_extrude($fn=80)
+                rotate_extrude($fn=120)
                 translate([thread_minor_d/2, 0, 0])
                 polygon([[0, -thread_pitch/2], [thread_groove_depth, 0], [0, thread_pitch/2]]);
             }
