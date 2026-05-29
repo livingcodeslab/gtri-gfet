@@ -107,13 +107,16 @@ module grapheneaCardOT2Adapter() {
     union() {
       difference() {
         workpiece(max_width, max_length,max_height);
-        translate([(max_width-graphenea_card_width)/2,
-                   (max_length-graphenea_card_length)/2,
-                   (max_height-pcb_thickness)+0.01]
-                  // add a little extra to the z-axis so that rendering does
-                  // not fuzz over
-                  ) {
-          grapheneaCardOutline();
+        union() {
+          translate([(max_width-graphenea_card_width)/2,
+                     (max_length-graphenea_card_length)/2,
+                     (max_height-pcb_thickness)+0.01]
+                    // add a little extra to the z-axis so that rendering does
+                    // not fuzz over
+                    ) {
+            grapheneaCardOutline();
+          }
+          solderJointsGrooves();
         }
       }
 
