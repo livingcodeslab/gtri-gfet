@@ -5,7 +5,7 @@ max_width = 85.48;
 bezel_width = 3;
 
 // graphenea card
-pcb_width = 1.57;
+pcb_thickness = 1.57;
 graphenea_card_width = 73.8;
 graphenea_card_length = 90;
 
@@ -17,12 +17,12 @@ module grapheneaCardOutline() {
   module cardCutout() {
     translate([0, 5, 0]) {
       union() {
-        cube([5, 63.9, pcb_width]);
-        translate([0, 0, pcb_width]) {
+        cube([5, 63.9, pcb_thickness]);
+        translate([0, 0, pcb_thickness]) {
           rotate(a=180, [1, 0, 0]){
             intersection() {
-              cube([5, 5, pcb_width]);
-              cylinder(h=pcb_width, r=5);
+              cube([5, 5, pcb_thickness]);
+              cylinder(h=pcb_thickness, r=5);
             }
           }
         }
@@ -31,11 +31,11 @@ module grapheneaCardOutline() {
   }
 
   difference() {
-    cube([graphenea_card_width, graphenea_card_length, pcb_width]);
+    cube([graphenea_card_width, graphenea_card_length, pcb_thickness]);
     translate([0, 21.1, 0]) {
       cardCutout();
     }
-    translate([graphenea_card_width, 21.1, pcb_width]) {
+    translate([graphenea_card_width, 21.1, pcb_thickness]) {
       rotate(180, [0, 1, 0]) {
         cardCutout();
       }
@@ -72,7 +72,7 @@ module grapheneaCardOT2Adapter() {
         workpiece(max_width, max_length,max_height);
         translate([(max_width-graphenea_card_width)/2,
                    (max_length-graphenea_card_length)/2,
-                   max_height-pcb_width]) {
+                   max_height-pcb_thickness]) {
           grapheneaCardOutline();
         }
       }
