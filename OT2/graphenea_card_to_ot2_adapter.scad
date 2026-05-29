@@ -8,6 +8,7 @@ bezel_width = 3;
 pcb_thickness = 1.57;
 graphenea_card_width = 73.8;
 graphenea_card_length = 90;
+screw_hole_radius = 1.5;
 
 module workpiece (width, depth, height) {
   cube([width, depth, height]);
@@ -65,6 +66,11 @@ module bezel(width, height, length) {
   }
 }
 
+module screwHoleProng(height=max_height, radius=1.5) {
+  // This fits into the screw-hole(s) provided on the card
+  cylinder(h=height, r=radius);
+}
+
 module grapheneaCardOT2Adapter() {
   difference() {
     union() {
@@ -80,13 +86,13 @@ module grapheneaCardOT2Adapter() {
       translate([max_width/2,
                  (max_length - ((max_length-graphenea_card_length)/2)) - 10,
                  0]) {
-        cylinder(h=max_height, r=1);
+        screwHoleProng();
       }
 
       translate([max_width/2,
                  (max_length - ((max_length-graphenea_card_length)/2)) - 20,
                  0]) {
-        cylinder(h=max_height, r=1);
+        screwHoleProng(max_height, screw_hole_radius);
       }
     }
 
