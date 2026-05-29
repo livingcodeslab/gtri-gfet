@@ -5,7 +5,7 @@ max_width = 85.48;
 bezel_width = 3;
 
 // graphenea card
-pcb_thickness = 1.57;
+pcb_thickness = 1.63; // standard: 1.57, measured: 1.63(avg)
 graphenea_card_width = 73.8;
 graphenea_card_length = 90;
 screw_hole_radius = 1.5;
@@ -78,7 +78,10 @@ module grapheneaCardOT2Adapter() {
         workpiece(max_width, max_length,max_height);
         translate([(max_width-graphenea_card_width)/2,
                    (max_length-graphenea_card_length)/2,
-                   max_height-pcb_thickness]) {
+                   (max_height-pcb_thickness)+0.01]
+                  // add a little extra to the z-axis so that rendering does
+                  // not fuzz over
+                  ) {
           grapheneaCardOutline();
         }
       }
